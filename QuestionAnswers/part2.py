@@ -9,15 +9,8 @@ def q2a():
     X, y = load_bank_note_data('train.csv')
     X_test, y_test = load_bank_note_data('test.csv')
     
-    # from sklearn.linear_model import Perceptron
-    # model = Perceptron(max_iter=10, tol=1e-8)
-    # model.fit(X, y)
-    # print(model.score(X, y))
-    # print(model.score(X_test, y_test))
-    # print(model.coef_)
-    
-    model = perc.PerceptronModel(X, y, random_seed=False, rate=1e-3)
-    print(model.convergence_of_weights)
+    model = perc.PerceptronModel(X, y, random_seed=False, rate=.1)
+    # print(model.convergence_of_weights)
     error = 1 - model.test(X, y)
     print(error)
     error = 1 - model.test(X_test, y_test)
