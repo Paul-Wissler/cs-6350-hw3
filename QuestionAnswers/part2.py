@@ -10,7 +10,6 @@ def q2a():
     X_test, y_test = load_bank_note_data('test.csv')
     
     model = perc.PerceptronModel(X, y, random_seed=False, rate=.1)
-    # print(model.convergence_of_weights)
     error = 1 - model.test(X, y)
     print(error)
     error = 1 - model.test(X_test, y_test)
@@ -18,11 +17,25 @@ def q2a():
 
 
 def q2b():
-    print(perc.VotedPerceptronModel)
+    X, y = load_bank_note_data('train.csv')
+    X_test, y_test = load_bank_note_data('test.csv')
+    
+    model = perc.VotedPerceptronModel(X, y, random_seed=False, rate=.1)
+    error = 1 - model.test(X, y)
+    print(error)
+    error = 1 - model.test(X_test, y_test)
+    print(error)
 
 
 def q2c():
-    print(perc.AveragePerceptronModel)
+    X, y = load_bank_note_data('train.csv')
+    X_test, y_test = load_bank_note_data('test.csv')
+    
+    model = perc.AveragePerceptronModel(X, y, random_seed=False, rate=.1)
+    error = 1 - model.test(X, y)
+    print(error)
+    error = 1 - model.test(X_test, y_test)
+    print(error)
 
 
 def load_bank_note_data(csv: str) -> (pd.DataFrame, pd.Series):
