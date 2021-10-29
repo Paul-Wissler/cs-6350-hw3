@@ -72,20 +72,22 @@
 \section{Paper Problems [36 points + 15 bonus]}
 \begin{enumerate}
 	\item~[8 points] Suppose we have a linear classifier for $2$ dimensional features. The classification boundary, \ie  the hyperplane is $2x_1 + 3x_2 - 4 = 0$ ($x_1$ and $x_2$ are the two input features). 
+	
+	$dist(\x_i, h) = \frac{|\w^\top \x_i + b|}{||\w||}$
+	
 	\begin{enumerate}
-		
 	
 	\begin{table}[h]
 		\centering
-		\begin{tabular}{cc|c}
-			$x_1$ & $x_2$ &  {label}\\ 
+		\begin{tabular}{cc|c||c}
+			$x_1$ & $x_2$ &  {label} & {distance}\\ 
 			\hline\hline
-			1 & 1 & 1 \\ \hline
-			1 & -1 & -1 \\ \hline
-			0 & 0 & -1 \\ \hline
-			-1 & 3 & 1 \\ \hline
+			1  &  1 &  1 & $\frac{1}{\sqrt{13}} | 2 *  1 + 3 * 1 - 4 | = \frac{1}{\sqrt{13}}$ \\ \hline
+			1  & -1 & -1 & $\frac{1}{\sqrt{13}} | 2 *  1 - 3 * 1 - 4 | = \frac{5}{\sqrt{13}}$ \\ \hline
+			0  &  0 & -1 & $\frac{1}{\sqrt{13}} | 2 *  0 + 3 * 0 - 4 | = \frac{4}{\sqrt{13}}$ \\ \hline
+			-1 & 3  &  1 & $\frac{1}{\sqrt{13}} | 2 * -1 + 3 * 3 - 4 | = \frac{3}{\sqrt{13}}$ \\ \hline
 			\end{tabular}
-		\caption{Dataset 1}
+		\caption{Dataset 1, with distance calculations}
 	\end{table}
 	\item~[4 points] Now we have a dataset in Table 1. 
 	Does the hyperplane have a margin for the dataset?  If yes, what is the margin? Please use the formula we discussed in the class to compute. If no, why? (Hint: when can a hyperplane have a margin?)
@@ -95,35 +97,73 @@
 		\begin{tabular}{cc|c}
 			$x_1$ & $x_2$ &  {label}\\ 
 			\hline\hline
-			1 & 1 & 1 \\ \hline
-			1 & -1 & -1 \\ \hline
-			0 & 0 & -1 \\ \hline
-			-1 & 3 & 1 \\ \hline
-				-1 & -1 & 1 \\
+			1  &  1 &  1 \\ \hline
+			1  & -1 & -1 \\ \hline
+			0  &  0 & -1 \\ \hline
+			-1 &  3 &  1 \\ \hline
+		    -1 & -1 &  1 \\
 		\end{tabular}
 		\caption{Dataset 2}
 	\end{table}
+	
+	\emph{Answer}
+	
+	Figure 1 demonstrates that this hyperplane does separate the data. Table 1 (updated with Distance calculations) gives the distance between each data point and the hyperplane. The minimum distance is $\frac{1}{\sqrt{13}}$, which means that is the margin.
+	
+	\begin{figure}[htp]
+        \centering
+        \includegraphics[width=8cm]{part1_q1a.png}
+        \caption{Weight vector change per update.}
+        \label{fig:q2b_weights}
+    \end{figure}
+	
 	\item~[4 points] We have a second dataset in Table 2. Does the hyperplane have a margin for the dataset? If yes, what is the margin? If no, why? 
+	
+	\emph{Answer}
+	
+	Figure 2 plots the hyperplane and the data points. Clearly, the hyperplane does not separate the data correctly, so there can be no margin.
+	
+	\begin{figure}[htp]
+        \centering
+        \includegraphics[width=8cm]{part1_q1b.png}
+        \caption{Weight vector change per update.}
+        \label{fig:q2b_weights}
+    \end{figure}
 	
 	\end{enumerate}
 	
 
 		\item~[8 points] Now, let us look at margins for datasets. Please review what we have discussed in the lecture and slides. A margin for a dataset is not a margin of a hyperplane!  
+		
+		
 		\begin{enumerate}
 			
 			\begin{table}[h]
 				\centering
-				\begin{tabular}{cc|c}
-					$x_1$ & $x_2$ &  {label}\\ 
+				\begin{tabular}{cc|c|c}
+					$x_1$ & $x_2$ &  {label} & {distance} \\ 
 					\hline\hline
-					-1 & 0 & -1 \\ \hline
-					0 & -1 & -1 \\ \hline
-					1 & 0 & 1 \\ \hline
-					0 & 1 & 1 \\ \hline
+					-1 &  0 & -1 & $\frac{1}{\sqrt{2}} | -1 + 0 | = \frac{1}{\sqrt{2}}$ \\ \hline
+					 0 & -1 & -1 & $\frac{1}{\sqrt{2}} |  0 - 1 | = \frac{1}{\sqrt{2}}$ \\ \hline
+					 1 &  0 &  1 & $\frac{1}{\sqrt{2}} |  1 + 0 | = \frac{1}{\sqrt{2}}$ \\ \hline
+					 0 &  1 &  1 & $\frac{1}{\sqrt{2}} |  0 + 1 | = \frac{1}{\sqrt{2}}$ \\ \hline
 				\end{tabular}
-				\caption{Dataset 3}
+				\caption{Dataset 3, with distance calculations}
 			\end{table}
+			
 			\item~[4 points] Given the dataset in Table 3, can you calculate its margin? If you cannot, please explain why. 
+			
+			\emph{Answer}
+		
+    		Figure 3 plots Dataset 3 and a potential hyperplane that would separate the data. We can calculate R, which is the furthest point from the origin, but all points are equidistant from the origin, so they all have the same R. We see that $R = \sqrt{0^2 + 1^2} = 1$. If we use a simple hyperplane that goes through the origin and has the same distance to all four points, say $x_1 + x_2 = 0$, we see that $||\w|| = \sqrt{1^2 + 1^2} = \sqrt{2}$
+    		
+    		\begin{figure}[htp]
+                \centering
+                \includegraphics[width=8cm]{part1_q2a.png}
+                \caption{Weight vector change per update.}
+                \label{fig:q2b_weights}
+            \end{figure}
+			
 			\begin{table}[h]
 				\centering
 				\begin{tabular}{cc|c}
@@ -136,11 +176,61 @@
 				\end{tabular}
 				\caption{Dataset 4}
 			\end{table}
+			
 			\item~[4 points] Given the dataset in Table 4, can you calculate its margin? If you cannot, please explain why. 
+			
+			\emph{Answer}
+			
+			Figure 4 plots Dataset 4. Clearly, the data is not linearly separable, so we cannot calculate any margin.
+			
+			\begin{figure}[htp]
+                \centering
+                \includegraphics[width=8cm]{part1_q2b.png}
+                \caption{Weight vector change per update.}
+                \label{fig:q2b_weights}
+            \end{figure}
 			
 		\end{enumerate}
 	
 	\item ~[\textbf{Bonus}] [5 points] Let us review the Mistake Bound Theorem for Perceptron discussed in our lecture.  If we change the second assumption to be as follows: Suppose there exists a vector $\u\in \mathbb{R}^n$, and a positive $\gamma$, we have for each $(\x_i, y_i)$ in the training data, $y_i(\u^\top \x_i) \ge \gamma$. What is the upper bound for the number of mistakes made by the Perceptron algorithm?   Note that $\u$ is unnecessary to be a unit vector.
+	
+	\emph{Answer}
+	
+	Comparing to the proof in the lecture slides \href{https://www.cs.utah.edu/~zhe/teach/pdf/Perceptron.pdf}{(CLICK HERE)}, the only difference is that $\u$ is not \emph{necessarily} a unit vector. We will note that normally, the upper bound is $\frac{R^2}{\gamma^2}$.
+	
+	We will pick up at part 3/3 of the proof seen in the lecture slides. We know that $\u^\top \w_t \geq t \gamma$ and $t R^2 \geq ||\w_t||^2$, the latter of which can be rewritten as $\sqrt{t} R \geq ||\w_t||$. We can also rewrite the dot product $\u^\top \w$ as $||\u|| ||\w_t|| cos\theta$, where $\theta$ is the angle between $\u$ and $\w_t$, and $cos\theta < 1$. The interesting case for us is when $||\u|| ||\w_t|| cos\theta > ||\w_t||$, which means that $||\u|| > \frac{1}{cos\theta}$. 
+	
+	Obviously, based on Proof 3/3 from the lecture slides, if $||\u|| \leq \frac{1}{cos\theta}$, then we get $\frac{R^2}{\gamma^2}$.
+	
+	If $||\u|| > \frac{1}{cos\theta}$,
+	
+	\[
+	    => ||\u|| ||\w_t|| cos\theta \geq t\gamma
+	\]
+	\[
+	    => ||\w_t|| \geq \frac{t\gamma}{||\u|| cos\theta}
+	\]
+	
+	From here, we add in that $\sqrt{t} R \geq ||\w_t||$ to yield,
+	
+	\[
+	    R \sqrt{t} \geq ||\w_t|| \geq \frac{t\gamma}{||\u|| cos\theta}
+	\]
+	\[
+	    => R^2 t \geq \frac{t^2 \gamma^2}{||\u||^2 cos^2\theta}
+	\]
+	\[
+	    => ||\u||^2 cos^2\theta \frac{R^2}{\gamma^2} \geq t
+	\]
+	
+	So, it is the same value as the upper bound for when $\u$ is a unit vector, but scaled by the square of the norm of $\u$ and the cosine of its angle with $\w_t$. Obviously, this means it is simpler to compute the upper bound if we just keep $\u$ as a unit vector.
+	
+	\begin{figure}[htp]
+        \centering
+        \includegraphics[width=8cm]{part1_q5.png}
+        \caption{Weight vector change per update.}
+        \label{fig:q2b_weights}
+    \end{figure}
 	
 	\item~[10 points] We want to use Perceptron to learn a disjunction as follows,
 	\[
@@ -150,6 +240,11 @@
 	Please derive an upper bound of the number of mistakes made by Perceptron in learning this disjunction.
 
 	\item~[10 points] Prove that linear classifiers in a plane cannot shatter any $4$ distinct points. 
+	
+	\emph{Answer}
+	
+	Figure 5 shows a case with four points that cannot be shattered by any linear classifier.
+	
 	\item~[\textbf{Bonus}]~[10 points] Consider our infinite hypothesis space $\Hcal$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(\Hcal)$? 
 
 
@@ -157,14 +252,83 @@
 
 \section{Practice [64 points ]}
 \begin{enumerate}
-	\item~[2 Points] Update your machine learning library. Please check in your implementation of ensemble learning and least-mean-square (LMS) method in HW1 to your GitHub repository. Remember last time you created the folders ``Ensemble Learning" and ``Linear Regression''. You can commit your code into the corresponding folders now. Please also supplement README.md with concise descriptions about how to use your code to run your Adaboost, bagging, random forest, LMS with batch-gradient and stochastic gradient (how to call the command, set the parameters, etc). Please create a new folder ``Perceptron" in the same level as these folders.  
+	\item~[2 Points] Update your machine learning library. Please check in your implementation of ensemble learning and least-mean-square (LMS) method in HW1 to your GitHub repository. Remember last time you created the folders ``Ensemble Learning" and ``Linear Regression''. You can commit your code into the corresponding folders now. Please also supplement README.md with concise descriptions about how to use your code to run your Adaboost, bagging, random forest, LMS with batch-gradient and stochastic gradient (how to call the command, set the parameters, etc). Please create a new folder ``Perceptron" in the same level as these folders.
+	
+	\href{https://github.com/Paul-Wissler/cs-6350-hw3}{Click here for the repository for HW3}. It is not the same as the repository for HW1 or HW2.
 
 \item We will implement  Perceptron for a binary classification task --- bank-note authentication. Please download the data ``bank-note.zip'' from Canvas. The features and labels are listed in the file ``bank-note/data-desc.txt''. The training data are stored in the file ``bank-note/train.csv'', consisting of $872$ examples. The test data are stored in ``bank-note/test.csv'', and comprise of $500$ examples. In both the training and testing datasets, feature values and labels are separated by commas. 
 \begin{enumerate}
 	\item~[16 points] Implement the standard Perceptron. Set the maximum number of epochs $T$ to 10. Report your learned weight vector, and the average prediction error on the test dataset. 
+	
+	\emph{Answer}
+	
+	WEIGHT VECTOR
+	
+	WaveletVariance   -5.777450
+	
+    WaveletSkew       -3.204904
+    
+    WaveletCurtosis   -4.753204
+    
+    ImageEntropy      -0.603608
+    
+    MODEL\_BIAS        -5.300000
+    
+    ERRORS
+	
+	TRAIN ERROR:  0.04243
+	
+    TEST ERROR:   0.05000
+	
 	\item~[16 points] Implement the voted Perceptron. Set the maximum number of epochs $T$ to 10. Report the list of the distinct weight vectors and their counts --- the number of correctly predicted training examples. Using this set of weight vectors to predict each test example. Report the average test error. 
+	
+	\emph{Answer}
+	
+	Figure 6 shows how the weight vector changes with each update, and Figure 7 shows the votes assigned to each weight vector. The votes correspond to how many data points that each weight vector managed to accurately predict.
+	
+	\begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{q2b_weights_convergence.png}
+        \caption{Weight vector change per update.}
+        \label{fig:q2b_weights}
+    \end{figure}
+    
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{q2b_votes.png}
+        \caption{Votes for each weight vector.}
+        \label{fig:q2b_votes}
+    \end{figure}
+	
+	TRAIN ERROR:  0.01261
+	
+    TEST ERROR:   0.01400
+	
 	\item~[16 points] Implement the average Perceptron. Set the maximum number of epochs $T$ to 10. Report your learned weight vector. Comparing with the list of weight vectors from (b), what can you observe? Report the average prediction error on the test data. 
+	
+	\emph{Answer}
+	
+	WEIGHT VECTOR
+	WaveletVariance   -37108.434439
+	
+    WaveletSkew       -25185.487162
+    
+    WaveletCurtosis   -25383.376175
+    
+    ImageEntropy       -7638.087261
+    
+    MODEL\_BIAS        -34243.400000
+    
+    ERRORS
+	
+	TRAIN ERROR:  0.01491
+    
+    TEST ERROR:   0.01400
+	
 	\item~[14 points] Compare the average prediction errors for the three methods. What do you conclude? 
+	
+	Obviously, the standard Perceptron is the worst performer. But, Voted and Average Perceptrons perform about the same. Because the Voted Perceptron stores more data, the Average Perceptron is likely a more performative model at higher epochs since it only needs to compare to evaluate with one weight vector.
+	
 \end{enumerate}
 
 
