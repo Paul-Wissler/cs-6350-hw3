@@ -203,6 +203,79 @@
 	\]
 	The training set are all $2^n$ Boolean input vectors in the instance space. 
 	Please derive an upper bound of the number of mistakes made by Perceptron in learning this disjunction.
+	
+	\emph{Answer}
+	
+	We know that the upper bound is $\frac{R^2}{\gamma^2}$, so we need to find $R$ and $\gamma$.
+	
+	R is easy enough to find. If we assume that all terms end up as 1 (i.e. $x_1$ through $x_k$ are 0, and $x_{k+1}$ through $x_{2k}$ are 1), then the maximum distance, $R = \sqrt{1 + 2k}$.
+	
+	For $\gamma$, we try to find a linear classifier i.e. a hyperplane that will split positive and negative outputs. Splitting the function into the disjunctions and conjunctions, then we would say that $f(\x) = 1$ iff,
+	
+	\[
+	    a) \sum_{k+1}^{2k} x_i \geq 1
+	\]
+	
+	\[
+	    b) k - 1 \geq \sum_{1}^{k} x_i
+	\]
+	
+	Because for (a), we should return True if any $x_i = 1$, and (b) should return True if any $x_i = 0$. When we combine them, we simply need to change the bias by 1. This yields the following linear classifier,
+	
+	\[
+	    => \sum_{k+1}^{2k} x_i - \sum_{1}^{k} x_i + k - 1 = 0
+	\]
+	
+	But to make sure that this hyperplane has a 0 margin, we add $\frac{1}{2}$, yielding,
+	
+	\[
+	    => \sum_{k+1}^{2k} x_i - \sum_{1}^{k} x_i + k - \frac{1}{2} = 0
+	\]
+	
+	Next, we check $\u^\top\x = 0$, where,
+	
+	\[
+	    \x^\top = [x_1, \hdots, x_{k+1}, \hdots, x_{2k+1}, \hdots, 1]
+	\]
+	
+	and,
+	
+	\[
+	    \u^\top = \frac{1}{\sqrt{\sum_{1}^{k} (-1)^2 + \sum_{k+1}^{2k} 1^2 + (k-\frac{1}{2})^2}} [-1, \hdots, 1, \hdots, 0, \hdots, k - \frac{1}{2}]
+	\]
+	\[
+	    = \frac{1}{\sqrt{ k + k + k^2 - k + \frac{1}{4} } } [-1, \hdots, 1, \hdots, 0, \hdots, k - \frac{1}{2}]
+	\]
+	\[
+	    = \frac{1}{\sqrt{ k^2 + k + \frac{1}{4} } } [-1, \hdots, 1, \hdots, 0, \hdots, k - \frac{1}{2}]
+	\]
+	\[
+	    = \frac{1}{\sqrt{ (k + \frac{1}{2})^2 } } [-1, \hdots, 1, \hdots, 0, \hdots, k - \frac{1}{2}]
+	\]
+	\[
+	    = \frac{1}{ k + \frac{1}{2} } [-1, \hdots, 1, \hdots, 0, \hdots, k - \frac{1}{2}]
+	\]
+	
+	Say that $\sum_{k+1}^{2k} x_i - \sum_{1}^{k} x_i = 1 - k$,
+	
+	\[
+	    => \gamma = \frac{ k - \frac{1}{2} + 1 - k }{ k + \frac{1}{2} }
+	\]
+	\[
+	    = \frac{ \frac{1}{2} }{ k + \frac{1}{2} }
+	\]
+	\[
+	    = \frac{ 1 }{ 2k + 1 }
+	\]
+	
+	Therefore, we can conclude that the upper bound is,
+	
+	\[
+	    \frac{R^2}{\gamma^2} = \frac{ 1 + 2k }{ (1 + 2k)^{-2} }
+	\]
+	\[
+	    = (1 + 2k)^3
+	\]
 
 	\item~[10 points] Prove that linear classifiers in a plane cannot shatter any $4$ distinct points. 
 	
