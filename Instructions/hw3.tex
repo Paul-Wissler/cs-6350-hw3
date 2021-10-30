@@ -32,42 +32,7 @@
 \maketitle
 
 \input{emacscomm}
-\newcommand{\Hcal}{\mathcal{H}} 
-{\footnotesize
-	\begin{itemize}
-		\item You are welcome to talk to other members of the class about
-		the homework. I am more concerned that you understand the
-		underlying concepts. However, you should write down your own
-		solution. Please keep the class collaboration policy in mind.
-		
-		\item Feel free to discuss the homework with the instructor or the TAs.
-		
-		\item Your written solutions should be brief and clear. You do not need to include original problem descriptions in your solutions. You need to
-		show your work, not just the final answer, but you do \emph{not}
-		need to write it in gory detail. Your assignment should be {\bf no
-			more than 15 pages}. Every extra page will cost a point.
-		
-		\item Handwritten solutions will not be accepted.
-		
-		
-		\item {\em Your code should run on the CADE machines}. \textbf{You should
-		include a shell script, {\tt run.sh}, that will execute your code
-		in the CADE environment. Your code should produce similar output to what you include in your report.}
-		
-		You are responsible for ensuring that the grader can execute the
-		code using only the included script. If you are using an
-		esoteric programming language, you should make sure that its
-		runtime is available on CADE.
-		
-		\item Please do not hand in binary files! We will {\em not} grade
-		binary submissions.
-		
-		\item The homework is due by \textbf{midnight of the due date}. Please submit
-		the homework on Canvas.
-		
-	\end{itemize}
-}
-
+\newcommand{\Hcal}{\mathcal{H}}
 
 \section{Paper Problems [36 points + 15 bonus]}
 \begin{enumerate}
@@ -113,7 +78,7 @@
 	\begin{figure}[htp]
         \centering
         \includegraphics[width=8cm]{part1_q1a.png}
-        \caption{Weight vector change per update.}
+        \caption{Points and linear classifier plotted for Part 1 Question 1a.}
         \label{fig:q2b_weights}
     \end{figure}
 	
@@ -126,7 +91,7 @@
 	\begin{figure}[htp]
         \centering
         \includegraphics[width=8cm]{part1_q1b.png}
-        \caption{Weight vector change per update.}
+        \caption{Points and linear classifier plotted for Part 1 Question 1b.}
         \label{fig:q2b_weights}
     \end{figure}
 	
@@ -155,12 +120,12 @@
 			
 			\emph{Answer}
 		
-    		Figure 3 plots Dataset 3 and a potential hyperplane that would separate the data. We can calculate R, which is the furthest point from the origin, but all points are equidistant from the origin, so they all have the same R. We see that $R = \sqrt{0^2 + 1^2} = 1$. If we use a simple hyperplane that goes through the origin and has the same distance to all four points, say $x_1 + x_2 = 0$, we see that $||\w|| = \sqrt{1^2 + 1^2} = \sqrt{2}$
+    		Figure 3 plots Dataset 3 and a potential hyperplane that would separate the data. We can calculate R, which is the furthest point from the origin, but all points are equidistant from the origin, so they all have the same R. We see that $R = \sqrt{0^2 + 1^2} = 1$. If we use a simple hyperplane that goes through the origin and has the same distance to all four points, say $x_1 + x_2 = 0$, we see that $||\w|| = \sqrt{1^2 + 1^2} = \sqrt{2}$. Therefore, the margin, $\gamma = \frac{1}{\sqrt{2}}$.
     		
     		\begin{figure}[htp]
                 \centering
                 \includegraphics[width=8cm]{part1_q2a.png}
-                \caption{Weight vector change per update.}
+                \caption{Points and likely linear classifier fitted to data set for Part 1 Question 2a.}
                 \label{fig:q2b_weights}
             \end{figure}
 			
@@ -186,7 +151,7 @@
 			\begin{figure}[htp]
                 \centering
                 \includegraphics[width=8cm]{part1_q2b.png}
-                \caption{Weight vector change per update.}
+                \caption{Points plotted for Part 1 Question 2b.}
                 \label{fig:q2b_weights}
             \end{figure}
 			
@@ -228,7 +193,7 @@
 	\begin{figure}[htp]
         \centering
         \includegraphics[width=8cm]{part1_q5.png}
-        \caption{Weight vector change per update.}
+        \caption{Proof that linear classifiers cannot shatter 4 points.}
         \label{fig:q2b_weights}
     \end{figure}
 	
@@ -245,7 +210,17 @@
 	
 	Figure 5 shows a case with four points that cannot be shattered by any linear classifier.
 	
-	\item~[\textbf{Bonus}]~[10 points] Consider our infinite hypothesis space $\Hcal$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(\Hcal)$? 
+	\item~[\textbf{Bonus}]~[10 points] Consider our infinite hypothesis space $\Hcal$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(\Hcal)$?
+	
+	\emph{Answer}
+	
+	Figure 6 shows how rectangles can shatter 1 to 2 points, because an infinitesimally small rectangle can be drawn over any single point. Assuming that not all 3 points are co-linear, we also see that 3 points can be shattered because we can draw a rectangle around any 2 adjacent points. For a similar reason (under similar conditions where any 3 points cannot be co-linear) we can also shatter any 4 points. However, we cannot shatter 5 points, as indicated when $d=5$. So, because $\Hcal$ can shatter 3 points but not 4, we can conclude $\mathrm{VC}(\Hcal)=4$.
+	
+	\begin{figure}[htp]
+        \centering
+        \includegraphics[width=14cm]{part1_q6.png}
+        \caption{Proof that rectangles in a plane can shatter 1 to 4 points, but cannot shatter 5 points.}
+    \end{figure}
 
 
 \end{enumerate}
@@ -284,7 +259,7 @@
 	
 	\emph{Answer}
 	
-	Figure 6 shows how the weight vector changes with each update, and Figure 7 shows the votes assigned to each weight vector. The votes correspond to how many data points that each weight vector managed to accurately predict. The votes can be seen in Section 3.1, and the updated weights array can be seen in Section 3.2. The CSV's can also be found in the GitHub repo, though the convergence of weights CSV is formatted with ' \& ' instead of ',' and lacks a header. This was done to make it easier to copy values into a table in this document (see Appendix).
+	Figure 7 shows how the weight vector changes with each update, and Figure 8 shows the votes assigned to each weight vector. The votes correspond to how many data points that each weight vector managed to accurately predict. The votes can be seen in Section 3.1, and the updated weights array can be seen in Section 3.2. The CSV's can also be found in the GitHub repo, though the convergence of weights CSV is formatted with ' \& ' instead of ',' and lacks a header. This was done to make it easier to copy values into a table in this document (see Appendix).
 	
 	\href{https://github.com/Paul-Wissler/cs-6350-hw3/blob/main/Instructions/q2b_votes.csv}{CLICK HERE FOR VOTES CSV LINK}
 	
@@ -328,10 +303,12 @@
 	TRAIN ERROR:  0.01491
     
     TEST ERROR:   0.01400
+    
+    The primary observation I would make is that the final weight vector for the Average Perceptron is massively larger in scale than any single weight vector in (b), but it would make sense because the Voted Perceptron will multiply each weight vector by its vote, which in some cases is as high as 8000 (see Figure 8). However, in terms of scale relative to each other, the individual weights seem to be on the same relative scale to each other as they were in (a) (and individually in (b)). For example, ImageEntropy is about 10 times smaller than the other weights in both the Average Perceptron, Standard Perceptron, and individually in the Voted Perceptron.
 	
 	\item~[14 points] Compare the average prediction errors for the three methods. What do you conclude? 
 	
-	Obviously, the standard Perceptron is the worst performer. But, Voted and Average Perceptrons perform about the same. Because the Voted Perceptron stores more data, the Average Perceptron is likely a more performative model at higher epochs since it only needs to compare to evaluate with one weight vector.
+	Obviously, the standard Perceptron is the worst performer. But, Voted and Average Perceptrons perform about the same. Because the Voted Perceptron stores more data, the Average Perceptron is likely a more performative model at higher epochs since it only needs to compare to evaluate with one weight vector. In any case, increasing the margin certainly has a significant effect on the error rate.
 	
 \end{enumerate}
 
