@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 import Perceptron as perc
@@ -38,7 +39,6 @@ def q2b():
     X_test, y_test = load_bank_note_data('test.csv')
     
     model = perc.VotedPerceptronModel(X, y, random_seed=False, rate=.1)
-    # print(len(model.weights_list))
     weights_df = pd.DataFrame(model.weights_list)
     w_cols = list(weights_df.columns)
     weights_df['VOTES'] = model.votes_list
@@ -53,8 +53,15 @@ def q2b():
     plt.xlabel('Update #')
     plt.savefig(Path('Instructions', 'q2b_votes.png'))
     plt.close()
+
+    np.savetxt( 
+        Path('Instructions', 'q2b_weights_convergence.csv'),
+        weights_df[w_cols].reset_index(),
+        fmt='%.3f',
+        delimiter=' & ',
+    )
+    weights_df.VOTES.to_csv(Path('Instructions', 'q2b_votes.csv'), index=False)
     
-    # print(len(model.votes_list))
     error = 1 - model.test(X, y)
     print('TRAIN ERROR: ', error)
     error = 1 - model.test(X_test, y_test)
