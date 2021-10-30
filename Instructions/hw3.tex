@@ -284,7 +284,11 @@
 	
 	\emph{Answer}
 	
-	Figure 6 shows how the weight vector changes with each update, and Figure 7 shows the votes assigned to each weight vector. The votes correspond to how many data points that each weight vector managed to accurately predict.
+	Figure 6 shows how the weight vector changes with each update, and Figure 7 shows the votes assigned to each weight vector. The votes correspond to how many data points that each weight vector managed to accurately predict. The votes can be seen in Section 3.1, and the updated weights array can be seen in Section 3.2. The CSV's can also be found in the GitHub repo, though the convergence of weights CSV is formatted with ' \& ' instead of ',' and lacks a header. This was done to make it easier to copy values into a table in this document (see Appendix).
+	
+	\href{https://github.com/Paul-Wissler/cs-6350-hw3/blob/main/Instructions/q2b_votes.csv}{CLICK HERE FOR VOTES CSV LINK}
+	
+	\href{https://github.com/Paul-Wissler/cs-6350-hw3/blob/main/Instructions/q2b_weights_convergence.csv}{CLICK HERE FOR WEIGHTS CONVERGENCE CSV LINK}
 	
 	\begin{figure}[htp]
         \centering
@@ -331,6 +335,37 @@
 	
 \end{enumerate}
 
+\section{Appendix}
+
+\subsection{Part 2 Question 2b VOTES}
+
+The following array shows the number of votes per updated weight array. The array is 237 values long.
+
+[1 1 3 3 5 5 10 18 22 26 32 34 36 38 39 39 39 48 81 83 124 155 155 209 209 214 216 222 222 236 236 284 307 320 320 387 427 427 430 433 443 443 496 499 538 562 577 584 587 600 600 680 681 694 727 736 787 788 812 821 857 898 931 957 963 978 984 1013 1021 1102 1130 1142 1150 1162 1169 1262 1281 1282 1341 1359 1425 1452 1455 1486 1530 1657 1670 1670 1678 1746 1767 1769 1842 2074 2137 2166 2166 2237 2255 2260 2260 2275 2295 2329 2335 2348 2382 2492 2493 2511 2565 2635 2661 2699 2703 2705 2725 2734 2783 2789 2792 2930 2984 3040 3134 3183 3326 3377 3388 3413 3446 3483 3559 3567 3583 3820 3844 3867 3900 3929 3931 3989 4075 4088 4144 4230 4246 4259 4318 4371 4518 4521 4525 4695 4771 4788 4837 4858 4875 4884 4895 4923 4970 5061 5151 5153 5232 5244 5273 5295 5310 5334 5358 5390 5408 5450 5464 5489 5571 5583 5610 5657 5759 5891 5927 6005 6016 6017 6019 6130 6148 6231 6284 6310 6426 6428 6478 6481 6587 6602 6610 6637 6652 6727 6736 6775 6820 6971 7051 7105 7130 7246 7264 7283 7331 7334 7387 7553 7581 7628 7674 7763 7770 7782 7910 7931 7951 7988 8001 8079 8169 8210 8243 8360 8415 8470 8471]
+
+\subsection{Part 2 Question 2b Weights}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{cccccc}
+        {Update No.} & {WaveletVariance} & {WaveletSkew} & {WaveletCurtosis} & {ImageEntropy} & {MODEL\_BIAS} \\
+        \hline\hline
+        0 & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 \\ \hline
+        1 & -0.193 & -0.776 & 0.017 & 0.308 & 0.100 \\ \hline
+        2 & -0.409 & -0.473 & -0.224 & 0.065 & 0.000 \\ \hline
+        3 & -0.795 & -0.121 & -0.263 & -0.321 & -0.100 \\ \hline
+        4 & -0.744 & -0.073 & -0.461 & -0.263 & -0.200 \\ \hline
+        5 & -0.771 & -0.995 & -0.132 & 0.221 & -0.100 \\ \hline
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ \hline
+        231 & -5.831 & -2.799 & -4.487 & -1.273 & -5.500 \\ \hline
+        232 & -6.126 & -3.626 & -3.461 & -1.156 & -5.600 \\ \hline
+        233 & -5.886 & -3.170 & -3.959 & -1.446 & -5.700 \\ \hline
+        234 & -5.622 & -4.184 & -3.826 & -0.899 & -5.600 \\ \hline
+        235 & -5.674 & -3.858 & -4.135 & -0.801 & -5.500 \\ \hline
+        236 & -5.726 & -3.531 & -4.444 & -0.702 & -5.400 \\ \hline
+    \end{tabular}
+	\caption{Convergence of Weights as calculated in Part 2 Question 2b. Values removed to show beginning and ending values.}
+\end{table}
 
 \end{enumerate}
 
